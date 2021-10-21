@@ -5,6 +5,8 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(usethis)
+use_git_config(user.name = "Tinadoth", user.email = "mccookmary@gmail.com")
 ```
 
 .Give an example of a nominal scale measurement of some attribute that you might want
@@ -39,7 +41,6 @@ When testing a null hypothesis such as H0:
 = b, what can be said about a “significant”
 
 result?
-
 
 9.
 Explain what an Alpha level is.
