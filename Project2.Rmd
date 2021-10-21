@@ -1,0 +1,70 @@
+---
+title: "Project2"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+.Give an example of a nominal scale measurement of some attribute that you might want
+to study in your research area of interest.
+Explain why it is nominal.
+
+
+2. Give an example of an ordinal scale measurement of some attribute that you might want   
+to study in your research area of interest.
+Explain why it is ordinal.
+
+
+3. Why are data transformations sometimes used?
+If the test being used requires normally distributed data, then you can transform non normal data into normal data and still use the test. 
+
+4. Why do we conduct tests of significance?
+In order to see if we should retain or reject the null hypothesis for an alternative one.
+
+5. What does the null hypothesis state?
+Everything is equal, there are no differences between the groups in the study
+
+6. What is meant when the null hypothesis is retained? Rejected?
+Retained - It means that the sample did not contain any significant differences 
+Rejected - The sample contained significant differences and the alternative hypothesis was accepted. 
+7. Is it appropriate to declare a null hypothesis such as H0: 𝜇= b to be true if the results are
+“Nonsignificant”?
+No, because there is always a chance that the sample did not include the differences.
+ So, the null hypothesis can never be proven.
+8.
+When testing a null hypothesis such as H0:
+𝜇
+= b, what can be said about a “significant”
+
+result?
+
+
+9.
+Explain what an Alpha level is.
+The probability that you’re rejecting the null hypothesis when it’s true. Typically it is set at .05, or a 5% chance that you are making a mistake.
+
+10.
+What is a
+P-value and how does it relate to an alpha level?
+A p-value is the probability that the results you got from your sample would happen if the null hypothesis was true. So, if the p is less than the alpha, then the null hypothesis is considered to be false, and if p is greater the null is retained.
+
+11.
+What does a p-value tell us, and what does it not tell us?
+
+
+12.
+What is a Type 1 error? What is a Type 2 error?
+Type one is when there is a false positive result, or rejecting the null hypothesis for the alternative when the null is true. Type 2 is when there is a false negative, or the alternative is true but we fail to reject the null.
+
+13. Three hundred participants were randomly selected from a large public university 
+research participant pool of about 6,500 undergraduate students. The 300 students were 
+randomly assigned to one of three groups of equal size. All three groups watched a 10-
+minute video and then answered a few questions. In Group 1, the video described the 
+health benefits of regular exercise. In Group 2, the video presented an expert panel 
+discussion of refugee issues. In Group 3, the video presented an expert panel discussion 
+of refugee issues that included graphic images of injured children. After viewing the 
+video, one of the questions asked, "Should the US increase the number of refugees it 
+admits into our country each year?" The sample data are given below.  
+
