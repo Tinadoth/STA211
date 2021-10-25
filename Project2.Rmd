@@ -62,5 +62,64 @@ What is a Type 1 error? What is a Type 2 error?
 
 Type one is when there is a false positive result, or rejecting the null hypothesis for the alternative when the null is true. Type 2 is when there is a false negative, or the alternative is true but we fail to reject the null.
 
-13. Three hundred participants were randomly selected from a large public university research participant pool of about 6,500 undergraduate students. The 300 students were randomly assigned to one of three groups of equal size. All three groups watched a 10-minute video and then answered a few questions. In Group 1, the video described the health benefits of regular exercise. In Group 2, the video presented an expert panel discussion of refugee issues. In Group 3, the video presented an expert panel discussion of refugee issues that included graphic images of injured children. After viewing the video, one of the questions asked, "Should the US increase the number of refugees it admits into our country each year?" The sample data are given below.  
+13. Three hundred participants were randomly selected from a large public university research participant pool of about 6,500 undergraduate students. The 300 students were randomly assigned to one of three groups of equal size. All three groups watched a 10-minute video and then answered a few questions. In Group 1, the video described the health benefits of regular exercise. In Group 2, the video presented an expert panel discussion of refugee issues. In Group 3, the video presented an expert panel discussion of refugee issues that included graphic images of injured children. After viewing the video, one of the questions asked, "Should the US increase the number of refugees it admits into our country each year?" The sample data are given below. 
 
+
+
+```{r}
+library(readxl)
+Project2DATA <- read_excel("Project2DATA.xlsx")
+t2 <- table(Project2DATA)
+
+t2
+
+```
+Part II: Your Data, Your Way 
+
+a) This study seeks to understand the relationship between taking pictures of slides and grades on tests in undergraduates. Students were asked to take pictures of certain slides during a recoreded lecture. The were then tested on the   
+
+b) 107 UCR undergraduates The data gathered of the total questions correct and total pictures taken are split into thirds.
+
+c)
+```{r}
+Photo <- read_excel("Photo For R.xlsx")
+
+Photo$TOTAL_CORRECT <- cut(Photo$TOTAL_CORRECT, 3, labels=c('LowA', 'MidA', 'HighA'))
+
+Photo$photo_total <- cut(Photo$photo_total, 3, labels=c('LowP', 'MidP', 'HighP'))
+
+photo <- subset(Photo,select=c(photo_total,TOTAL_CORRECT))
+
+
+cp <- table(photo$photo_total,photo$TOTAL_CORRECT)
+cp
+```
+```{r}
+cpstat <- chisq.test(cp)
+
+cpstat$statistic
+cpstat$p.value
+```
+d) 
+
+Part III: Evaluating the Literature 
+
+Abstract
+
+The present study piloted a cognitive exercise program in a college classroom to enhance learning of lecture material. Undergraduate students enrolled in introductory psychology (N ¼ 68) completed variations of letter–number cancellation tasks with
+spoken instructions in 5-min sessions prior to lecture during four nonconsecutive class periods. Results showed significantly
+better exam performance on material based on lectures that followed cognitive exercise compared  to lectures on non exercise
+days. On an anonymous program feedback survey, students reported significantly greater levels of alertness following cognitive
+exercise versus before; the majority of students rated their attention to lecture and note-taking ability as above average after
+cognitive workouts. Although preliminary, findings suggest that cognitive exercise in the classroom may positively impact learning
+for college students.
+
+The null hypothesis is that cognitive exercise would not make a difference on student's mind wandering during a lecture.
+
+The null isn't stated, but I got it based on their alternative hypothesis stating that cognitive exercise will facilitate attending a lecture.
+
+The results do include a p-value, but it also includes a t-test statistic, effect size, and confidence interval as well. 
+
+They didn't really explain what the statistics meant. I think that they assume the readers know what they are. They did explain that the t-test showed significantly greater test scores on exercise related materials and greater self reported attention during and after the cognitive exercise, which was correct.
+
+The don't specifically state that d=.624 is the effect size, but they do correctly state that there was a moderate effect in the discussion.

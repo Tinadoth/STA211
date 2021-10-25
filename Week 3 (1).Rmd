@@ -1,0 +1,153 @@
+---
+title: 'Week 3'
+author: "Emily Esposito"
+output: html_document
+---
+
+# Installing Packages
+New packages for this week
+```{r}
+install.packages("rcompanion")
+install.packages("questionr")
+```
+# Importing Data
+This week, we will be going over chi-square and correlations, and will do so with the PRRI dataset once again.
+```{r}
+library(haven)
+prri <- read_sav("PRRI-2019-American-Values-Survey-1.sav")
+
+```
+
+# Chi-Square Prep and Analysis
+We'll then pick some columns to run chi-square tests on. (What kind of data do chi-square tests use?)
+```{r}
+chi1 <- subset(prri,select=c(Q1,PARTY))
+```
+
+## Visualization and Cleaning
+Let's take a look at our variables
+```{r}
+table(chi1)
+```
+
+So we once again have our unnecessary variables (98s, 99, and 9s) that we need to get rid of
+```{r}
+chi1 <- subset(chi1,Q1!=9&(PARTY==1|PARTY==2|PARTY==3|PARTY==4))
+
+#And let's check our data again:
+table(chi1)
+```
+
+And now, we don't HAVE to do this, but we may want to relabel our values. This just makes our output clearer:
+```{r}
+chi1$PARTY <- as.factor(chi1$PARTY)
+levels(chi1$PARTY) <- list(Republican="1",Democrat="2",Independent="3",Other="4")
+
+chi1$Q1 <- as.factor(chi1$Q1)
+levels(chi1$Q1) <- list('Right Direction'="1",'Wrong Track'="2")
+
+#And let's check again, for old time's sake:
+table(chi1)
+```
+
+## Running Chi-Square Tests
+So now we can do a chi-square test of the data. To do that, we need to make a table of our data
+```{r}
+chiSquareTable <- table(chi1)
+```
+
+Then run a chi square on it
+```{r}
+chiSq <- chisq.test(chiSquareTable)
+```
+
+And then we can look at the results! We can look at the chi-square value:
+```{r}
+chiSq$statistic
+```
+
+And p-value:
+```{r}
+chiSq$p.value
+```
+
+We can also look at the residuals. This is good to determine which conditions vary from expected
+```{r}
+chiSq$residuals
+```
+I'm not super familiar with chi-square, but the bigger (in magnitude) values mean they're more different than expected. According to Google, a value greater than 2 (or less than -2) shows that that cell is different than expected.
+
+We can also look at effect size! Cramer's V works for this type of table:
+```{r}
+library(rcompanion)
+cramerV(chiSquareTable)
+```
+This is a moderate effect!
+
+We can also examine a 2x2 table, and run some analyses on that. Let's focus on our Democrats and Republicans for that
+```{r}
+chi2 <- subset(chi1,PARTY=="Republican"|PARTY=="Democrat")
+chi2$PARTY <- droplevels(chi2$PARTY)
+chiSquareTable2 <- table(chi2)
+chiSq2 <- chisq.test(chiSquareTable2)
+chiSq2$statistic
+```
+
+And the p-value
+```{r}
+chiSq2$p.value
+```
+
+And the residuals
+```{r}
+chiSq2$residuals
+```
+
+We could once again do Cramer's V
+```{r}
+cramerV(chiSquareTable2)
+```
+Even bigger effect!
+
+Or we could do an odds ratio
+```{r}
+library(questionr)
+odds.ratio(chiSquareTable2)
+```
+
+## Graphing Data from Chi-Square
+We can also graph this, using a bar graph. Let's try that with ggplot
+```{r}
+library(ggplot2)
+
+ggplot(chi1,aes(PARTY,Q1))+geom_bar(fill=c("red","blue","green","purple"))+xlab("Political Party")+ylab("Frequency")
+
+ggplot(data = chi1, aes(x = PARTY)) + 
+  geom_bar(aes(fill = Q1),position="dodge") +
+  xlab("Political Party") +
+  ylab("Frequency") +
+  scale_fill_manual("What direction is our country going in?", values = c("Right Direction" = "green3", "Wrong Track" = "red"))
+```
+
+# Correlations
+So, we will be doing a few things with correlations in this section of lab. First, we'll get our data. We'll use the scales we made last week, for our measures of feelings towards Democrats or Republicans on a scale.
+```{r}
+df <- read.csv("Republican and Democrat Favorability Scale.csv")
+```
+
+First, let's visualize our data
+```{r}
+ggplot(data = df, aes(x = demFav,y=repFav)) + 
+  geom_point() +
+  xlab("Democrat Favorability") +
+  ylab("Republican Favorability") +
+  geom_smooth(method = "lm")
+```
+
+Makes sense. But let's check out that correlation. There's a few ways to do this.
+Personally, I like corr.test as it gives important info
+```{r}
+library(psych)
+r <- corr.test(df$demFav,df$repFav)
+print(r,short=F)
+```
