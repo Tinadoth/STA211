@@ -1,0 +1,20 @@
+---
+title: "Project3"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1. 
+
+Paired samples ttest
+
+2.
+
+Independent samples t-test
+
+3.
+
+One sample ttest
