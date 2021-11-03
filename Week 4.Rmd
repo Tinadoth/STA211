@@ -1,0 +1,209 @@
+---
+title: "Week 4"
+author: "Emily Esposito"
+date: "10/21/2021"
+output: html_document
+---
+# Codebook
+We have a lot of columns, here's what they are:
+PARTY: Political Party
+demFav: Average favorability towards Democrats
+repFav: Average favorability towards Republicans
+Q2A_A: Donald Trump, R
+Q2A_B: Bill Weld, R
+Q2A_C: Nancy Pelosi, D
+Q2A_D: Alexandria Ocasio-Cortez, D
+Q2A_E: Mitch McConnell, R
+Q2A_F: Barack Obama, D
+Q2B_A: Joe Biden, D
+Q2B_B: Cory Booker, D
+Q2B_C: Pete Buttigieg, D
+Q2B_D: Kamala Harris, D
+Q2B_E: Bernie Sanders, D
+Q2B_F: Elizabeth Warren, D
+Q2B_G: Steve Bullock, D
+Q2B_H: Julian Castro, D
+Q2B_I: Bill de Blasio, D
+Q2B_J: Tulsi Gabbard, D
+Q2B_K: Kirsten Gillibrand, D
+Q2B_L: Amy Klobuchar, D
+Q2B_M: Beto O'Rourke, D
+Q2B_N: Tom Steyer, D
+Q2B_O: Marianne Williamson, D
+Q2B_P: Andrew Yang, D
+
+# Setup
+This week, we're going to talk about regression and t-test (with a little data cleaning in there!)
+But first, let's get set up.
+```{r}
+install.packages("ggeffects")
+install.packages("tidyr")
+install.packages("Rmisc")
+
+library(ggplot2)
+library(ggeffects)
+library(tidyr)
+library(psych)
+library(Rmisc)
+library(dplyr)
+```
+
+And then we can import some data to look at!
+```{r}
+df <- read.csv("Week 4 Favorability Data.csv")
+```
+
+# Regression
+## Computing Regression
+This is the same data we were using last time when we found correlations. We can use the same columns (Dem and Rep Favorability) to find a regression:
+```{r}
+reg <- lm(repFav~demFav, data=df)
+summary(reg)
+```
+This may be a little confusing to read, but know that the "Estimate" is the b-coefficient for your predictor and that the Pr(>|t|) bit is the p-value.
+The first "Estimate," by (Intercept), is the intercept!
+So we can see that the formula for our regression is Y-hat = 
+
+This is cool, but there's more we can do! We can find confidence intervals around our values:
+```{r}
+confint(reg)
+```
+
+We also are using data that doesn't have a meaningful zero, meaning that we don't get much out of knowing our intercept.
+Let's change that:
+```{r}
+df$cDemFav <- scale(df$demFav,center=T,scale=F)
+```
+
+This only centers our data; it doesn't z-score it. But now, if we run another regression:
+```{r}
+reg2 <- lm(repFav~cDemFav,data=df)
+summary(reg2)
+```
+Now our intercept has meaning!
+
+We can also standardize our data to get beta coefficients in our regression:
+```{r}
+df$zDemFav <- scale(df$demFav)
+df$zRepFav <- scale(df$repFav)
+
+reg3 <- lm(zRepFav~zDemFav,data=df)
+summary(reg3)
+```
+
+## Plotting Regression
+We can then plot our regression, using ggpredict
+```{r}
+gg <- ggpredict(reg,terms=c("demFav"))
+
+plot(gg)+labs(x="Democrat Favorability",y="Republican Favorability",title="")
+```
+
+# t-tests
+Now, we're going to talk about t-tests.
+## One Sample
+First, let's start with a one-sample t-test. We might be wondering if our Republican favorability or Democrat favorability is different from the mean. We can test that:
+```{r}
+t.test(df$demFav,mu=2.5)
+```
+
+## Two Sample
+One sample t-tests aren't very common, so we can instead talk about two sample t-tests, using the same code.
+We can compare, for example, if people differ in favorability towards Democrats or Republicans. But first, let's check our homogeneity of variance:
+```{r}
+var.test(df$demFav,df$repFav)
+```
+Based on this, what do we know? Should we assume the variances are equal?
+```{r}
+t.test(df$demFav,df$repFav,var.equal=)
+```
+But now, is an independent samples t-test the right choice?
+```{r}
+t.test(df$demFav,df$repFav,var.equal=,paired=)
+```
+
+There's also another way to do a t-test based on how your data is organized.
+Let's say we want to only look at Democrats and Republicans and see how they vary in how they feel about the Republican party. First, we can isolate just them:
+```{r}
+df1 <- subset(df,df$PARTY=="Republican"|df$PARTY=="Democrat")
+```
+
+And then we can run another t-test! Testing variance first:
+```{r}
+var.test(repFav~PARTY,data=df1)
+```
+
+And similarly running a t-test:
+```{r}
+t.test(repFav~PARTY,data=df1,var.equal=)
+```
+
+R output gives you means for the groups, but you may also want standard deviations when writing up your results in APA style.
+Here's how you would find standard deviation by group:
+```{r}
+aggregate(repFav~PARTY, df1, sd)
+```
+
+For the t-tests by column (the above ones comparing demFav and repFav), you can just run the standard deviation function on the whole column, as we've done before:
+```{r}
+sd(df$demFav,na.rm=T)
+```
+```{r}
+sd(df$repFav,na.rm=T)
+```
+
+
+## Graphing t-tests
+We may want to graph t-tests as bar graphs with confidence intervals.
+```{r}
+dfSumm <- df1 %>%
+  group_by(PARTY) %>%
+  summarise(
+    n=n(), #Tells it what n is for SE calculation later
+    sd = sd(repFav, na.rm=T), #Finds SD for SE calculation
+    repFav = mean(repFav,na.rm=T) #Mean for later
+    )%>%
+  mutate( se=sd/sqrt(n))  %>% #Calculates SE
+  mutate( ci=se * 1.96) #Calculates confidence interval. You may want to add in your t-crit
+            
+ggplot(dfSumm, aes(PARTY, repFav)) +
+  geom_col() +
+  geom_errorbar(aes(ymin = repFav-ci, ymax = repFav+ci),width=0.3)+
+  xlab("Political Party")+
+  ylab("Republican Favorability")
+```
+
+# Transforming Data
+Sometimes, you may want to store your data in different ways. For t-tests, you can largely use data regardless of if your groups are in separate columns or in the same column with a grouping variable elsewhere, but other measures may require you to change it (or you may just want to).
+Two functions that may be especially helpful are pivot_wider and pivot_longer.
+```{r}
+dfLong <- pivot_longer(df,cols=c("repFav","demFav"),
+                    names_to="polParty",values_to="partyFav")
+```
+
+I would do this to make a bar chart, because I just taught myself how to make a bar chart with data stored in this way and Google is not helpful in making a bar chart in a different way.
+```{r}
+dfLong$polParty <- as.factor(dfLong$polParty)
+
+dfSumm2 <- dfLong %>%
+  group_by(polParty) %>%
+  summarise(
+    n=n(), #Tells it what n is for SE calculation later
+    sd = sd(partyFav, na.rm=T), #Finds SD for SE calculation
+    partyFav = mean(partyFav,na.rm=T) #Mean for later
+    )%>%
+  mutate( se=sd/sqrt(n))  %>% #Calculates SE
+  mutate( ci=se * 1.96) #Calculates confidence interval. You may want to add in your t-crit
+
+ggplot(dfSumm2, aes(polParty, partyFav)) +
+  geom_col() +
+  geom_errorbar(aes(ymin = partyFav-ci, ymax = partyFav+ci),width=0.3)+
+  xlab("Political Party")+
+  ylab("Favorability")+
+  scale_x_discrete(labels=c("repFav" = "Republican Party", "demFav" = "Democratic Party"))
+```
+
+You may also want to do the reverse of this kind of code.
+```{r}
+dfWide <- pivot_wider(dfLong,names_from="polParty",values_from="partyFav")
+```
