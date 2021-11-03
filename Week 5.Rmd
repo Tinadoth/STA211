@@ -1,0 +1,55 @@
+---
+title: "Week 5"
+author: "Emily Esposito"
+date: "10/29/2021"
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
+
+# Setup
+First, let's get set up.
+```{r}
+install.packages("lsr")
+
+library(lsr)
+library(psych)
+```
+
+And then we can import some data to look at!
+```{r}
+df <- read.csv("Week 4 Favorability Data.csv")
+```
+
+# T-test Effect Sizes
+We can look at the data from last week and calculate effect size (Cohen's d)
+
+Let's first look at the t-test this way, as we did last week.
+We can isolate just the Republicans and Democrats:
+```{r}
+df1 <- subset(df,df$PARTY=="Republican"|df$PARTY=="Democrat")
+```
+
+And then we can run another t-test! Testing variance first:
+```{r}
+var.test(repFav~PARTY,data=df1)
+```
+
+And similarly running a t-test:
+```{r}
+t.test(repFav~PARTY,data=df1,var.equal=F)
+```
+
+And then do a measure of effect size:
+```{r}
+cohen.d(repFav~PARTY,data=df1)
+```
+
+This code gives both the Cohen's d and the CI around it.
+However, I've had some trouble with this function before, so here's another, just in case:
+```{r}
+cohensD(repFav~PARTY,data=df1)
+```
+
+

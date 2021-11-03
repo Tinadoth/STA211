@@ -1,20 +1,51 @@
 ---
 title: "Project3"
 output: html_document
+author: Maribeth McCook
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-1. 
+**1.** 
 
 Paired samples ttest
 
-2.
+**2.**
 
 Independent samples t-test
 
-3.
+**3.**
 
 One sample ttest
+
+**4.**
+
+a)
+
+b)
+
+**5.**
+
+a)
+
+b)
+
+c)
+
+d)
+
+e)
+
+**6.**
+
+a)
+
+b)
+
+c)
+
+d)
+
+**7.**
