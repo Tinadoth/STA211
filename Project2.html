@@ -9,6 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Maribeth McCook" />
 
 
 <title>Project2</title>
@@ -164,78 +165,64 @@ pre code {
 
 
 <h1 class="title toc-ignore">Project2</h1>
+<h4 class="author">Maribeth McCook</h4>
 
 </div>
 
 
-<p>1.Give an example of a nominal scale measurement of some attribute that you might want to study in your research area of interest. Explain why it is nominal.</p>
-<ol start="2" style="list-style-type: decimal">
-<li><p>Give an example of an ordinal scale measurement of some attribute that you might want<br />
-to study in your research area of interest. Explain why it is ordinal.</p></li>
-<li><p>Why are data transformations sometimes used? If the test being used requires normally distributed data, then you can transform non normal data into normal data and still use the test.</p></li>
-<li><p>Why do we conduct tests of significance? In order to see if we should retain or reject the null hypothesis for an alternative one.</p></li>
-<li><p>What does the null hypothesis state? Everything is equal, there are no differences between the groups in the study</p></li>
-<li><p>What is meant when the null hypothesis is retained? Rejected?</p></li>
-</ol>
+<div id="part-i-conceptual-checks-active-practice" class="section level3">
+<h3>Part I: Conceptual Checks &amp; Active Practice</h3>
+<p><strong>1.Give an example of a nominal scale measurement of some attribute that you might want to study in your research area of interest. Explain why it is nominal.</strong></p>
+<p>Do students prefer online or in person courses? This is nominal because there are two categories with no order, prefer online, and prefer in-person.</p>
+<p><strong>2. Give an example of an ordinal scale measurement of some attribute that you might want to study in your research area of interest. Explain why it is ordinal.</strong></p>
+<p>Satisfaction with instruction on a “dissatisfied,neutral, satisfied” scale. This is ordinal because it is categories that are in a certain order, without equal space between them.</p>
+<p><strong>3. Why are data transformations sometimes used?</strong></p>
+<p>If the test being used requires normally distributed data, then you can transform non normal data into normal data and still use the test.</p>
+<p><strong>4. Why do we conduct tests of significance?</strong></p>
+<p>In order to see if we should retain or reject the null hypothesis for an alternative one.</p>
+<p><strong>5. What does the null hypothesis state?</strong></p>
+<p>Everything is equal, there are no differences between the groups in the study</p>
+<p><strong>6. What is meant when the null hypothesis is retained? Rejected?</strong></p>
 <p>Retained - It means that the sample did not contain any significant differences Rejected - The sample contained significant differences and the alternative hypothesis was accepted.</p>
-<ol start="7" style="list-style-type: decimal">
-<li>Is it appropriate to declare a null hypothesis such as H0: 𝜇= b to be true if the results are “Nonsignificant”?</li>
-</ol>
+<p><strong>7. Is it appropriate to declare a null hypothesis such as H0: 𝜇= b to be true if the results are “Nonsignificant”?</strong></p>
 <p>No, because there is always a chance that the sample did not include the differences. So, the null hypothesis can never be proven.</p>
-<ol start="8" style="list-style-type: decimal">
-<li>When testing a null hypothesis such as H0;𝜇= b, what can be said about a “significant” result?</li>
-</ol>
+<p><strong>8. When testing a null hypothesis such as H0;𝜇= b, what can be said about a “significant” result?</strong></p>
 <p>One should reject the null hypothesis in favor of the alternative.</p>
-<ol start="9" style="list-style-type: decimal">
-<li>Explain what an Alpha level is.</li>
-</ol>
-<p>The probability that you’re rejecting the null hypothesis when it’s true. Typically it is set at .05, or a 5% chance that you are making a mistake.</p>
-<ol start="10" style="list-style-type: decimal">
-<li>What is a P-value and how does it relate to an alpha level?</li>
-</ol>
+<p><strong>9. Explain what an Alpha level is.</strong> The probability that you’re rejecting the null hypothesis when it’s true. Typically it is set at .05, or a 5% chance that you are making a mistake.</p>
+<p><strong>10. What is a P-value and how does it relate to an alpha level?</strong></p>
 <p>A p-value is the probability that the results you got from your sample would happen if the null hypothesis was true. So, if the p is less than the alpha, then the null hypothesis is considered to be false, and if p is greater the null is retained.</p>
-<ol start="11" style="list-style-type: decimal">
-<li><p>What does a p-value tell us, and what does it not tell us?</p></li>
-<li><p>What is a Type 1 error? What is a Type 2 error?</p></li>
-</ol>
+<p><strong>11. What does a p-value tell us, and what does it not tell us?</strong> It tells us the probability that we would have gotten that result if the null hypothesis was true.It doesn’t tell us the size of the effect.</p>
+<p><strong>12. What is a Type 1 error? What is a Type 2 error?</strong></p>
 <p>Type one is when there is a false positive result, or rejecting the null hypothesis for the alternative when the null is true. Type 2 is when there is a false negative, or the alternative is true but we fail to reject the null.</p>
-<ol start="13" style="list-style-type: decimal">
-<li>Three hundred participants were randomly selected from a large public university research participant pool of about 6,500 undergraduate students. The 300 students were randomly assigned to one of three groups of equal size. All three groups watched a 10-minute video and then answered a few questions. In Group 1, the video described the health benefits of regular exercise. In Group 2, the video presented an expert panel discussion of refugee issues. In Group 3, the video presented an expert panel discussion of refugee issues that included graphic images of injured children. After viewing the video, one of the questions asked, “Should the US increase the number of refugees it admits into our country each year?” The sample data are given below.</li>
+<p><strong>13.</strong> Three hundred participants were randomly selected from a large public university research participant pool of about 6,500 undergraduate students. The 300 students were randomly assigned to one of three groups of equal size. All three groups watched a 10-minute video and then answered a few questions. In Group 1, the video described the health benefits of regular exercise. In Group 2, the video presented an expert panel discussion of refugee issues. In Group 3, the video presented an expert panel discussion of refugee issues that included graphic images of injured children. After viewing the video, one of the questions asked, “Should the US increase the number of refugees it admits into our country each year?” The sample data are given below.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>The study population is all undergraduate students</p></li>
+<li></li>
 </ol>
-<pre class="r"><code>library(readxl)
-Project2DATA &lt;- read_excel(&quot;Project2DATA.xlsx&quot;)</code></pre>
-<pre><code>## New names:
-## * `` -&gt; ...1</code></pre>
-<pre class="r"><code>t2 &lt;- table(Project2DATA)
-
-t2</code></pre>
-<pre><code>## , , Group2 = 28, Group3 = 12
+<pre class="r"><code>m &lt;- matrix(c(56,44,72,28,88,12),nrow = 2, ncol = 3)
+table &lt;- as.table(m)
+table</code></pre>
+<pre><code>##    A  B  C
+## A 56 72 88
+## B 44 28 12</code></pre>
+<pre class="r"><code>chisq.test(table)</code></pre>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
 ## 
-##      Group1
-## ...1  44 56
-##   No   1  0
-##   Yes  0  0
-## 
-## , , Group2 = 72, Group3 = 12
-## 
-##      Group1
-## ...1  44 56
-##   No   0  0
-##   Yes  0  0
-## 
-## , , Group2 = 28, Group3 = 88
-## 
-##      Group1
-## ...1  44 56
-##   No   0  0
-##   Yes  0  0
-## 
-## , , Group2 = 72, Group3 = 88
-## 
-##      Group1
-## ...1  44 56
-##   No   0  0
-##   Yes  0  1</code></pre>
+## data:  table
+## X-squared = 25.397, df = 2, p-value = 3.056e-06</code></pre>
+<ol start="3" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<p>A Chi-square test of independence revealed a significant result between the stimulus and student response to the survey.</p>
+</div>
+<div id="part-ii-your-data-your-way" class="section level3">
+<h3>Part II: Your Data, Your Way</h3>
+<ol style="list-style-type: lower-alpha">
+<li><p>This study seeks to understand if there is a relationship between taking pictures of slides and grades on tests in undergraduates. It is hypothesized that there is a relationship. Students were asked to take pictures of certain slides during a recorded lecture, while acting like it was a live course. They were then tested on the material. The bottom one-third of scores are put in a low achievement category, the middle third in mid-achievement, and the highest third in high achievement. The number of photos taken are also recorded, with the lowest third of the number of pictures taken are put in low pics, the middle third in mid-pics, and the highest third in high pics.</p></li>
+<li><p>107 UCR undergraduates were asked to report the number of photos they took during a lecture and then were tested on the material. The data gathered of the total questions correct and total pictures taken are split into equal ordered thirds and placed in categories.Low pics, mid-pics, and high pics for number of pictures, and low achivment, mid-achivment, and high achivement for the number of questions answered.</p></li>
+<li></li>
+</ol>
 <pre class="r"><code>Photo &lt;- read_excel(&quot;Photo For R.xlsx&quot;)
 
 Photo$TOTAL_CORRECT &lt;- cut(Photo$TOTAL_CORRECT, 3, labels=c(&#39;LowA&#39;, &#39;MidA&#39;, &#39;HighA&#39;))
@@ -252,21 +239,29 @@ cp</code></pre>
 ##   LowP    38    5     0
 ##   MidP     5   38     3
 ##   HighP    0    3    14</code></pre>
-<pre class="r"><code>cpstat &lt;- chisq.test(cp)</code></pre>
+<pre class="r"><code>chisq.test(cp)</code></pre>
 <pre><code>## Warning in chisq.test(cp): Chi-squared approximation may be incorrect</code></pre>
-<pre class="r"><code>cpstat$statistic</code></pre>
-<pre><code>## X-squared 
-##  126.1272</code></pre>
-<pre class="r"><code>cpstat$p.value</code></pre>
-<pre><code>## [1] 2.620858e-26</code></pre>
-<p>Part III: Evaluating the Literature</p>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  cp
+## X-squared = 126.13, df = 4, p-value &lt; 2.2e-16</code></pre>
+<p>The p-value suggests that this variables are related. Since it is a significant result, p =&lt; .05, we should reject the null hypothesis and accept the alternative hypothesis.</p>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>A chi-squared test of independence has showed a significant result between number of photos taken and number of questions answered correctly. This means that the hypothesis of this study that they are related is supported. In order to find any causal relationships, the original numerical data should be used instead of the ordinal categories.This study can only address if there is a relationship.</li>
+</ol>
+</div>
+<div id="part-iii-evaluating-the-literature" class="section level3">
+<h3>Part III: Evaluating the Literature</h3>
 <p>Abstract</p>
 <p>The present study piloted a cognitive exercise program in a college classroom to enhance learning of lecture material. Undergraduate students enrolled in introductory psychology (N ¼ 68) completed variations of letter–number cancellation tasks with spoken instructions in 5-min sessions prior to lecture during four nonconsecutive class periods. Results showed significantly better exam performance on material based on lectures that followed cognitive exercise compared to lectures on non exercise days. On an anonymous program feedback survey, students reported significantly greater levels of alertness following cognitive exercise versus before; the majority of students rated their attention to lecture and note-taking ability as above average after cognitive workouts. Although preliminary, findings suggest that cognitive exercise in the classroom may positively impact learning for college students.</p>
 <p>The null hypothesis is that cognitive exercise would not make a difference on student’s mind wandering during a lecture.</p>
 <p>The null isn’t stated, but I got it based on their alternative hypothesis stating that cognitive exercise will facilitate attending a lecture.</p>
 <p>The results do include a p-value, but it also includes a t-test statistic, effect size, and confidence interval as well.</p>
 <p>They didn’t really explain what the statistics meant. I think that they assume the readers know what they are. They did explain that the t-test showed significantly greater test scores on exercise related materials and greater self reported attention during and after the cognitive exercise, which was correct.</p>
-<p>The don’t specifically state that d= .624 is the effect size, but they do correctly state that there was a moderate effect in the discussion.</p>
+<p>The don’t specifically state that d=.624 is the effect size, but they do correctly state that there was a moderate effect in the discussion.</p>
+<p>Honestly, I can’t think of any more analyses I would want for this study.</p>
+</div>
 
 
 

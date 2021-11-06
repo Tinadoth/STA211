@@ -1,84 +1,90 @@
 ---
 title: "Project2"
+author: Maribeth McCook
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(usethis)
+library(readxl)
 use_git_config(user.name = "Tinadoth", user.email = "mccookmary@gmail.com")
 ```
 
-1.Give an example of a nominal scale measurement of some attribute  that you might want to study in your research area of interest.
-Explain why it is nominal.
+### Part I: Conceptual Checks & Active Practice
 
+**1.Give an example of a nominal scale measurement of some attribute that you might want to study in your research area of interest. Explain why it is nominal.**
+
+Do students prefer online or in person courses? This is nominal because there are two categories with no order, prefer online, and prefer in-person.  
  
-2. Give an example of an ordinal scale measurement of some attribute that you might want   
-to study in your research area of interest.
-Explain why it is ordinal.
+**2. Give an example of an ordinal scale measurement of some attribute that you might want to study in your research area of interest. Explain why it is ordinal.**
 
+Satisfaction with instruction on a "dissatisfied,neutral, satisfied" scale. This is ordinal because it is categories that are in a certain order, without equal space between them.
 
-3. Why are data transformations sometimes used?
+**3. Why are data transformations sometimes used?**
+
 If the test being used requires normally distributed data, then you can transform non normal data into normal data and still use the test. 
 
-4. Why do we conduct tests of significance?
+**4. Why do we conduct tests of significance?**
+
 In order to see if we should retain or reject the null hypothesis for an alternative one.
 
-5. What does the null hypothesis state?
+**5. What does the null hypothesis state?**
+
 Everything is equal, there are no differences between the groups in the study
 
-6. What is meant when the null hypothesis is retained? Rejected?
+**6. What is meant when the null hypothesis is retained? Rejected?**
 
 Retained - It means that the sample did not contain any significant differences 
 Rejected - The sample contained significant differences and the alternative hypothesis was accepted. 
 
-7. Is it appropriate to declare a null hypothesis such as H0: 𝜇= b to be true if the results are
-“Nonsignificant”?
+**7. Is it appropriate to declare a null hypothesis such as H0: 𝜇= b to be true if the results are “Nonsignificant”?**
 
 No, because there is always a chance that the sample did not include the differences.
  So, the null hypothesis can never be proven.
  
-8.
-When testing a null hypothesis such as H0;𝜇= b, what can be said about a “significant” result?
+**8. When testing a null hypothesis such as H0;𝜇= b, what can be said about a “significant” result?**
 
 One should reject the null hypothesis in favor of the alternative.
 
-9.
-Explain what an Alpha level is.
-
+**9. Explain what an Alpha level is.**
 The probability that you’re rejecting the null hypothesis when it’s true. Typically it is set at .05, or a 5% chance that you are making a mistake.
 
-10.
-What is a P-value and how does it relate to an alpha level?
+**10. What is a P-value and how does it relate to an alpha level?**
 
 A p-value is the probability that the results you got from your sample would happen if the null hypothesis was true. So, if the p is less than the alpha, then the null hypothesis is considered to be false, and if p is greater the null is retained.
 
-11.
-What does a p-value tell us, and what does it not tell us?
+**11. What does a p-value tell us, and what does it not tell us?**
+It tells us the probability that we would have gotten that result if the null hypothesis was true.It doesn't tell us the size of the effect. 
 
-
-12.
-What is a Type 1 error? What is a Type 2 error?
+**12. What is a Type 1 error? What is a Type 2 error?**
 
 Type one is when there is a false positive result, or rejecting the null hypothesis for the alternative when the null is true. Type 2 is when there is a false negative, or the alternative is true but we fail to reject the null.
 
-13. Three hundred participants were randomly selected from a large public university research participant pool of about 6,500 undergraduate students. The 300 students were randomly assigned to one of three groups of equal size. All three groups watched a 10-minute video and then answered a few questions. In Group 1, the video described the health benefits of regular exercise. In Group 2, the video presented an expert panel discussion of refugee issues. In Group 3, the video presented an expert panel discussion of refugee issues that included graphic images of injured children. After viewing the video, one of the questions asked, "Should the US increase the number of refugees it admits into our country each year?" The sample data are given below. 
+**13.** Three hundred participants were randomly selected from a large public university research participant pool of about 6,500 undergraduate students. The 300 students were randomly assigned to one of three groups of equal size. All three groups watched a 10-minute video and then answered a few questions. In Group 1, the video described the health benefits of regular exercise. In Group 2, the video presented an expert panel discussion of refugee issues. In Group 3, the video presented an expert panel discussion of refugee issues that included graphic images of injured children. After viewing the video, one of the questions asked, "Should the US increase the number of refugees it admits into our country each year?" The sample data are given below. 
 
+a) The study population is all undergraduate students
 
+b)
 
 ```{r}
-library(readxl)
-Project2DATA <- read_excel("Project2DATA.xlsx")
-t2 <- table(Project2DATA)
+m <- matrix(c(56,44,72,28,88,12),nrow = 2, ncol = 3)
+table <- as.table(m)
+table
 
-t2
+chisq.test(table)
 
 ```
-Part II: Your Data, Your Way 
 
-a) This study seeks to understand the relationship between taking pictures of slides and grades on tests in undergraduates. Students were asked to take pictures of certain slides during a recoreded lecture. The were then tested on the   
+c)
 
-b) 107 UCR undergraduates The data gathered of the total questions correct and total pictures taken are split into thirds.
+A Chi-square test of independence revealed a significant result between the stimulus and student response to the survey. 
+
+### Part II: Your Data, Your Way 
+
+a) This study seeks to understand if there is a relationship between taking pictures of slides and grades on tests in undergraduates. It is hypothesized that there is a relationship. Students were asked to take pictures of certain slides during a recorded lecture, while acting like it was a live course. They were then tested on the material. The bottom one-third of scores are put in a low achievement category, the middle third in mid-achievement, and the highest third in high achievement. The number of photos taken are also recorded, with the lowest third of the number of pictures taken are put in low pics, the middle third in mid-pics, and the highest third in high pics.    
+
+b) 107 UCR undergraduates were asked to report the number of photos they took during a lecture and then were tested on the material. The data gathered of the total questions correct and total pictures taken are split into equal ordered thirds and placed in categories.Low pics, mid-pics, and high pics for number of pictures, and low achivment, mid-achivment, and high achivement for the number of questions answered.
 
 c)
 ```{r}
@@ -95,14 +101,14 @@ cp <- table(photo$photo_total,photo$TOTAL_CORRECT)
 cp
 ```
 ```{r}
-cpstat <- chisq.test(cp)
+chisq.test(cp)
 
-cpstat$statistic
-cpstat$p.value
 ```
-d) 
+The p-value suggests that this variables are related. Since it is a significant result, p =< .05, we should reject the null hypothesis and accept the alternative hypothesis. 
 
-Part III: Evaluating the Literature 
+d) A chi-squared test of independence has showed a significant result between number of photos taken and number of questions answered correctly. This means that the hypothesis of this study that they are related is supported. In order to find any causal relationships, the original numerical data should be used instead of the ordinal categories.This study can only address if there is a relationship.  
+
+### Part III: Evaluating the Literature 
 
 Abstract
 
@@ -123,3 +129,5 @@ The results do include a p-value, but it also includes a t-test statistic, effec
 They didn't really explain what the statistics meant. I think that they assume the readers know what they are. They did explain that the t-test showed significantly greater test scores on exercise related materials and greater self reported attention during and after the cognitive exercise, which was correct.
 
 The don't specifically state that d=.624 is the effect size, but they do correctly state that there was a moderate effect in the discussion.
+
+Honestly, I can't think of any more analyses I would want for this study.
