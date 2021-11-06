@@ -1,0 +1,104 @@
+---
+title: "Week 6"
+author: "Emily Esposito"
+date: "11/4/2021"
+output: html_document
+---
+
+# Setup
+Load libraries
+```{r}
+library(lsr)
+library(effectsize)
+library(tidyr)
+library(ggplot2)
+library(dplyr)
+```
+
+And import data
+```{r}
+df <- read.csv("Week 4 Favorability Data.csv")
+df <- df[!is.na(df$PARTY), ]
+```
+
+# Looking at our data
+We're going to look at how party affiliation affects attitudes towards Republicans, but first, let's look at the data:
+```{r}
+df %>%
+  ggplot( aes(x=repFav, fill=PARTY)) +
+    geom_histogram(position = 'identity') +
+    labs(fill="")+
+  ylab("Frequency")+
+  xlab("Republican Favorability")
+```
+
+We may also want to look at mean and standard deviation of our groups
+```{r}
+aggregate(df$repFav, list(df$PARTY), FUN=mean, na.rm=T)
+```
+
+```{r}
+aggregate(df$repFav, list(df$PARTY), FUN=sd, na.rm=T)
+```
+
+
+# Running a One-Way ANOVA
+Here is the basic formula for running an ANOVA:
+```{r}
+model1 <- aov(repFav~PARTY,data=df)
+summary(model1)
+```
+
+And then we can run a few different post hoc tests.
+
+First, we can do pairwise comparisons. Don't forget to do a Bonferroni correction!
+```{r}
+attach(df)
+pairwise.t.test(repFav,PARTY,p.adjust.method = "bonferroni")
+```
+
+We can also do Tukey's test
+```{r}
+TukeyHSD(model1)
+```
+
+Or, the much scarier, contrasts.
+This code is annoying, because you have to do it semi by hand like we talked about in class.
+First, we check our levels:
+```{r}
+levels(df$PARTY)
+```
+
+
+Then, we write out our contrasts and combine them:
+```{r}
+c1 <- c(1, -.5, -.5, 0) #Comparing Democrat to Independent+Other
+c2 <- c(0, -.5, -.5, 1) #Comparing Republican to Independent+Other
+
+cont <- cbind(c1,c2)
+
+contrasts(df$PARTY) <- cont
+contrasts(df$PARTY)
+```
+
+And then we run another ANOVA:
+```{r}
+model2 <- aov(repFav~PARTY,data=df)
+summary.aov(model2, split=list(PARTY=list("Dem vs. Ind+Other"=1, "Rep vs. Ind+Other"=2)))
+```
+
+Now, we can also do effect size calculations, such as eta-squared:
+```{r}
+etaSquared(anova,anova=T)
+```
+
+Or omega-squared (in the effectsize package):
+```{r}
+omega_squared(model1)
+```
+
+# Graphing ANOVA
+A review of bar graphs:
+```{r}
+ggplot(df,aes(PARTY,repFav))+geom_bar(position="dodge",stat="summary",fun="mean")+xlab("Political Party")+ylab("Mean Republican Favorability")
+```

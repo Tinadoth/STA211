@@ -220,7 +220,7 @@ table</code></pre>
 <h3>Part II: Your Data, Your Way</h3>
 <ol style="list-style-type: lower-alpha">
 <li><p>This study seeks to understand if there is a relationship between taking pictures of slides and grades on tests in undergraduates. It is hypothesized that there is a relationship. Students were asked to take pictures of certain slides during a recorded lecture, while acting like it was a live course. They were then tested on the material. The bottom one-third of scores are put in a low achievement category, the middle third in mid-achievement, and the highest third in high achievement. The number of photos taken are also recorded, with the lowest third of the number of pictures taken are put in low pics, the middle third in mid-pics, and the highest third in high pics.</p></li>
-<li><p>107 UCR undergraduates were asked to report the number of photos they took during a lecture and then were tested on the material. The data gathered of the total questions correct and total pictures taken are split into equal ordered thirds and placed in categories.Low pics, mid-pics, and high pics for number of pictures, and low achivment, mid-achivment, and high achivement for the number of questions answered.</p></li>
+<li><p>107 UCR undergraduates were asked to report the number of photos they took during a lecture and then were tested on the material. The data gathered of the total questions correct and total pictures taken are split into equal ordered thirds and placed in categories.Low pics, mid-pics, and high pics for number of pictures, and low achivment, mid-achievement, and high achievement for the number of questions answered.</p></li>
 <li></li>
 </ol>
 <pre class="r"><code>Photo &lt;- read_excel(&quot;Photo For R.xlsx&quot;)
@@ -246,9 +246,12 @@ cp</code></pre>
 ## 
 ## data:  cp
 ## X-squared = 126.13, df = 4, p-value &lt; 2.2e-16</code></pre>
-<p>The p-value suggests that this variables are related. Since it is a significant result, p =&lt; .05, we should reject the null hypothesis and accept the alternative hypothesis.</p>
+<pre class="r"><code>cramerV(cp)</code></pre>
+<pre><code>## Cramer V 
+##   0.7713</code></pre>
+<p>The x-squared value is large, 126.13, so it is likely that the variables are related. The p-value suggests that this variables are related, since it is a significant result, p =&lt; .05, Because of this, we should reject the null hypothesis (the variables are not related) and accept the alternative hypothesis(the variables are related). The effect size is .7713, which is a large effect.</p>
 <ol start="4" style="list-style-type: lower-alpha">
-<li>A chi-squared test of independence has showed a significant result between number of photos taken and number of questions answered correctly. This means that the hypothesis of this study that they are related is supported. In order to find any causal relationships, the original numerical data should be used instead of the ordinal categories.This study can only address if there is a relationship.</li>
+<li>A chi-squared test of independence has showed a significant result between number of photos taken and number of questions answered correctly. This means that the hypothesis of this study (that they are related) is supported. In order to find the direction of the relationship, the original numerical data should be used in a t-test, instead of the ordinal categories.This study can only address if there is a relationship.</li>
 </ol>
 </div>
 <div id="part-iii-evaluating-the-literature" class="section level3">

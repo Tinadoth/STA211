@@ -1,0 +1,390 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Project2},
+  pdfauthor={Maribeth McCook},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Project2}
+\author{Maribeth McCook}
+\date{}
+
+\begin{document}
+\maketitle
+
+\hypertarget{part-i-conceptual-checks-active-practice}{%
+\subsubsection{Part I: Conceptual Checks \& Active
+Practice}\label{part-i-conceptual-checks-active-practice}}
+
+\textbf{1.Give an example of a nominal scale measurement of some
+attribute that you might want to study in your research area of
+interest. Explain why it is nominal.}
+
+Do students prefer online or in person courses? This is nominal because
+there are two categories with no order, prefer online, and prefer
+in-person.
+
+\textbf{2. Give an example of an ordinal scale measurement of some
+attribute that you might want to study in your research area of
+interest. Explain why it is ordinal.}
+
+Satisfaction with instruction on a ``dissatisfied,neutral, satisfied''
+scale. This is ordinal because it is categories that are in a certain
+order, without equal space between them.
+
+\textbf{3. Why are data transformations sometimes used?}
+
+If the test being used requires normally distributed data, then you can
+transform non normal data into normal data and still use the test.
+
+\textbf{4. Why do we conduct tests of significance?}
+
+In order to see if we should retain or reject the null hypothesis for an
+alternative one.
+
+\textbf{5. What does the null hypothesis state?}
+
+Everything is equal, there are no differences between the groups in the
+study
+
+\textbf{6. What is meant when the null hypothesis is retained?
+Rejected?}
+
+Retained - It means that the sample did not contain any significant
+differences Rejected - The sample contained significant differences and
+the alternative hypothesis was accepted.
+
+\textbf{7. Is it appropriate to declare a null hypothesis such as H0: 𝜇=
+b to be true if the results are ``Nonsignificant''?}
+
+No, because there is always a chance that the sample did not include the
+differences. So, the null hypothesis can never be proven.
+
+\textbf{8. When testing a null hypothesis such as H0;𝜇= b, what can be
+said about a ``significant'' result?}
+
+One should reject the null hypothesis in favor of the alternative.
+
+\textbf{9. Explain what an Alpha level is.} The probability that you're
+rejecting the null hypothesis when it's true. Typically it is set at
+.05, or a 5\% chance that you are making a mistake.
+
+\textbf{10. What is a P-value and how does it relate to an alpha level?}
+
+A p-value is the probability that the results you got from your sample
+would happen if the null hypothesis was true. So, if the p is less than
+the alpha, then the null hypothesis is considered to be false, and if p
+is greater the null is retained.
+
+\textbf{11. What does a p-value tell us, and what does it not tell us?}
+It tells us the probability that we would have gotten that result if the
+null hypothesis was true.It doesn't tell us the size of the effect.
+
+\textbf{12. What is a Type 1 error? What is a Type 2 error?}
+
+Type one is when there is a false positive result, or rejecting the null
+hypothesis for the alternative when the null is true. Type 2 is when
+there is a false negative, or the alternative is true but we fail to
+reject the null.
+
+\textbf{13.} Three hundred participants were randomly selected from a
+large public university research participant pool of about 6,500
+undergraduate students. The 300 students were randomly assigned to one
+of three groups of equal size. All three groups watched a 10-minute
+video and then answered a few questions. In Group 1, the video described
+the health benefits of regular exercise. In Group 2, the video presented
+an expert panel discussion of refugee issues. In Group 3, the video
+presented an expert panel discussion of refugee issues that included
+graphic images of injured children. After viewing the video, one of the
+questions asked, ``Should the US increase the number of refugees it
+admits into our country each year?'' The sample data are given below.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\item
+  The study population is all undergraduate students
+\item
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{56}\NormalTok{,}\DecValTok{44}\NormalTok{,}\DecValTok{72}\NormalTok{,}\DecValTok{28}\NormalTok{,}\DecValTok{88}\NormalTok{,}\DecValTok{12}\NormalTok{),}\AttributeTok{nrow =} \DecValTok{2}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{3}\NormalTok{)}
+\NormalTok{table }\OtherTok{\textless{}{-}} \FunctionTok{as.table}\NormalTok{(m)}
+\NormalTok{table}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    A  B  C
+## A 56 72 88
+## B 44 28 12
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{chisq.test}\NormalTok{(table)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Pearson's Chi-squared test
+## 
+## data:  table
+## X-squared = 25.397, df = 2, p-value = 3.056e-06
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+\end{enumerate}
+
+A Chi-square test of independence revealed a significant result between
+the stimulus and student response to the survey.
+
+\hypertarget{part-ii-your-data-your-way}{%
+\subsubsection{Part II: Your Data, Your
+Way}\label{part-ii-your-data-your-way}}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\item
+  This study seeks to understand if there is a relationship between
+  taking pictures of slides and grades on tests in undergraduates. It is
+  hypothesized that there is a relationship. Students were asked to take
+  pictures of certain slides during a recorded lecture, while acting
+  like it was a live course. They were then tested on the material. The
+  bottom one-third of scores are put in a low achievement category, the
+  middle third in mid-achievement, and the highest third in high
+  achievement. The number of photos taken are also recorded, with the
+  lowest third of the number of pictures taken are put in low pics, the
+  middle third in mid-pics, and the highest third in high pics.
+\item
+  107 UCR undergraduates were asked to report the number of photos they
+  took during a lecture and then were tested on the material. The data
+  gathered of the total questions correct and total pictures taken are
+  split into equal ordered thirds and placed in categories.Low pics,
+  mid-pics, and high pics for number of pictures, and low achivment,
+  mid-achievement, and high achievement for the number of questions
+  answered.
+\item
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Photo }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"Photo For R.xlsx"}\NormalTok{)}
+
+\NormalTok{Photo}\SpecialCharTok{$}\NormalTok{TOTAL\_CORRECT }\OtherTok{\textless{}{-}} \FunctionTok{cut}\NormalTok{(Photo}\SpecialCharTok{$}\NormalTok{TOTAL\_CORRECT, }\DecValTok{3}\NormalTok{, }\AttributeTok{labels=}\FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}LowA\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}MidA\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}HighA\textquotesingle{}}\NormalTok{))}
+
+\NormalTok{Photo}\SpecialCharTok{$}\NormalTok{photo\_total }\OtherTok{\textless{}{-}} \FunctionTok{cut}\NormalTok{(Photo}\SpecialCharTok{$}\NormalTok{photo\_total, }\DecValTok{3}\NormalTok{, }\AttributeTok{labels=}\FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}LowP\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}MidP\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}HighP\textquotesingle{}}\NormalTok{))}
+
+\NormalTok{photo }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(Photo,}\AttributeTok{select=}\FunctionTok{c}\NormalTok{(photo\_total,TOTAL\_CORRECT))}
+
+
+\NormalTok{cp }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(photo}\SpecialCharTok{$}\NormalTok{photo\_total,photo}\SpecialCharTok{$}\NormalTok{TOTAL\_CORRECT)}
+\NormalTok{cp}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        
+##         LowA MidA HighA
+##   LowP    38    5     0
+##   MidP     5   38     3
+##   HighP    0    3    14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{chisq.test}\NormalTok{(cp)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in chisq.test(cp): Chi-squared approximation may be incorrect
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Pearson's Chi-squared test
+## 
+## data:  cp
+## X-squared = 126.13, df = 4, p-value < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cramerV}\NormalTok{(cp)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cramer V 
+##   0.7713
+\end{verbatim}
+
+The x-squared value is large, 126.13, so it is likely that the variables
+are related. The p-value suggests that this variables are related, since
+it is a significant result, p =\textless{} .05, Because of this, we
+should reject the null hypothesis (the variables are not related) and
+accept the alternative hypothesis(the variables are related). The effect
+size is .7713, which is a large effect.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  A chi-squared test of independence has showed a significant result
+  between number of photos taken and number of questions answered
+  correctly. This means that the hypothesis of this study (that they are
+  related) is supported. In order to find the direction of the
+  relationship, the original numerical data should be used in a t-test,
+  instead of the ordinal categories.This study can only address if there
+  is a relationship.
+\end{enumerate}
+
+\hypertarget{part-iii-evaluating-the-literature}{%
+\subsubsection{Part III: Evaluating the
+Literature}\label{part-iii-evaluating-the-literature}}
+
+Abstract
+
+The present study piloted a cognitive exercise program in a college
+classroom to enhance learning of lecture material. Undergraduate
+students enrolled in introductory psychology (N ¼ 68) completed
+variations of letter--number cancellation tasks with spoken instructions
+in 5-min sessions prior to lecture during four nonconsecutive class
+periods. Results showed significantly better exam performance on
+material based on lectures that followed cognitive exercise compared to
+lectures on non exercise days. On an anonymous program feedback survey,
+students reported significantly greater levels of alertness following
+cognitive exercise versus before; the majority of students rated their
+attention to lecture and note-taking ability as above average after
+cognitive workouts. Although preliminary, findings suggest that
+cognitive exercise in the classroom may positively impact learning for
+college students.
+
+The null hypothesis is that cognitive exercise would not make a
+difference on student's mind wandering during a lecture.
+
+The null isn't stated, but I got it based on their alternative
+hypothesis stating that cognitive exercise will facilitate attending a
+lecture.
+
+The results do include a p-value, but it also includes a t-test
+statistic, effect size, and confidence interval as well.
+
+They didn't really explain what the statistics meant. I think that they
+assume the readers know what they are. They did explain that the t-test
+showed significantly greater test scores on exercise related materials
+and greater self reported attention during and after the cognitive
+exercise, which was correct.
+
+The don't specifically state that d=.624 is the effect size, but they do
+correctly state that there was a moderate effect in the discussion.
+
+Honestly, I can't think of any more analyses I would want for this
+study.
+
+\end{document}

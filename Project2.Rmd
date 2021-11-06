@@ -8,6 +8,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(usethis)
 library(readxl)
+library(rcompanion)
 use_git_config(user.name = "Tinadoth", user.email = "mccookmary@gmail.com")
 ```
 
@@ -84,7 +85,7 @@ A Chi-square test of independence revealed a significant result between the stim
 
 a) This study seeks to understand if there is a relationship between taking pictures of slides and grades on tests in undergraduates. It is hypothesized that there is a relationship. Students were asked to take pictures of certain slides during a recorded lecture, while acting like it was a live course. They were then tested on the material. The bottom one-third of scores are put in a low achievement category, the middle third in mid-achievement, and the highest third in high achievement. The number of photos taken are also recorded, with the lowest third of the number of pictures taken are put in low pics, the middle third in mid-pics, and the highest third in high pics.    
 
-b) 107 UCR undergraduates were asked to report the number of photos they took during a lecture and then were tested on the material. The data gathered of the total questions correct and total pictures taken are split into equal ordered thirds and placed in categories.Low pics, mid-pics, and high pics for number of pictures, and low achivment, mid-achivment, and high achivement for the number of questions answered.
+b) 107 UCR undergraduates were asked to report the number of photos they took during a lecture and then were tested on the material. The data gathered of the total questions correct and total pictures taken are split into equal ordered thirds and placed in categories.Low pics, mid-pics, and high pics for number of pictures, and low achivment, mid-achievement, and high achievement for the number of questions answered.
 
 c)
 ```{r}
@@ -103,10 +104,12 @@ cp
 ```{r}
 chisq.test(cp)
 
-```
-The p-value suggests that this variables are related. Since it is a significant result, p =< .05, we should reject the null hypothesis and accept the alternative hypothesis. 
+cramerV(cp)
 
-d) A chi-squared test of independence has showed a significant result between number of photos taken and number of questions answered correctly. This means that the hypothesis of this study that they are related is supported. In order to find any causal relationships, the original numerical data should be used instead of the ordinal categories.This study can only address if there is a relationship.  
+```
+The x-squared value is large, 126.13, so it is likely that the variables are related. The p-value suggests that this variables are related, since it is a significant result, p =< .05, Because of this, we should reject the null hypothesis (the variables are not related) and accept the alternative hypothesis(the variables are related). The effect size is .7713, which is a large effect. 
+
+d) A chi-squared test of independence has showed a significant result between number of photos taken and number of questions answered correctly. This means that the hypothesis of this study (that they are related) is supported. In order to find the direction of the relationship, the original numerical data should be used  in a t-test, instead of the ordinal categories.This study can only address if there is a relationship.  
 
 ### Part III: Evaluating the Literature 
 

@@ -49,3 +49,11 @@ c)
 d)
 
 **7.**
+
+**8.**
+
+a) one-sample ttest
+
+b)
+
+c)
